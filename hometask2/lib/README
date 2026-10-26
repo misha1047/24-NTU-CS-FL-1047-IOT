@@ -44,3 +44,98 @@ libraries by scanning project source files.
 
 More information about PlatformIO Library Dependency Finder
 - https://docs.platformio.org/page/librarymanager/ldf.html
+
+
+ESP32 Homework – Dual LED PWM and OLED Display
+
+Author: Misha Rizwan
+
+Project Overview
+
+This project uses an ESP32 DevKit V1 to control two LEDs using Pulse Width Modulation (PWM). Task 1 implements LED fading at different PWM frequencies. Task 2 extends the same project by adding an SSD1306 OLED display to show LED brightness percentages and PWM frequencies in real time.
+
+Hardware Components
+
+* ESP32 DevKit V1
+* Red LED
+* Green LED
+* Two 220-ohm resistors
+* SSD1306 OLED display (128 × 64)
+* Jumper wires
+* Wokwi simulator
+
+Task 1: Dual LED PWM
+
+Objective
+
+To control two LEDs independently using PWM signals with different frequencies and create a smooth fading effect.
+
+Connections
+
+Component	ESP32 Pin
+Red LED anode through 220Ω resistor	GPIO 25
+Green LED anode through 220Ω resistor	GPIO 26
+Both LED cathodes	GND
+
+PWM Configuration
+
+* Red LED frequency: 1000 Hz
+* Green LED frequency: 5000 Hz
+* PWM resolution: 10 bits
+* Maximum duty cycle value: 1023
+* Fade update interval: 15 milliseconds
+
+Working
+
+Both LEDs gradually increase and decrease their brightness. Each LED uses a different PWM frequency and fading step. The Serial Monitor displays the brightness percentage and frequency of both LEDs.
+
+Task 2: Dual LED PWM with OLED Display
+
+Objective
+
+To extend Task 1 by adding an SSD1306 OLED display that shows the brightness and PWM frequency of both LEDs.
+
+Additional Connections
+
+OLED Pin	ESP32 Pin
+VCC	3V3
+GND	GND
+SDA	GPIO 21
+SCL	GPIO 22
+
+Display Information
+
+The OLED displays:
+
+* Red LED brightness percentage
+* Red LED PWM frequency: 1000 Hz
+* Green LED brightness percentage
+* Green LED PWM frequency: 5000 Hz
+
+Working
+
+The ESP32 controls both LEDs using PWM and continuously updates their brightness. The OLED refreshes every 100 milliseconds to display the current brightness percentages and frequencies. The Serial Monitor also displays the PWM information.
+
+Software Libraries
+
+* Arduino framework
+* Adafruit SSD1306
+* Adafruit GFX Library
+* Wire library
+
+Software Configuration
+
+The project is configured using PlatformIO in platformio.ini. The ESP32 Arduino core version determines which LEDC PWM functions are used.
+
+Simulation and Testing
+
+The project can be simulated in Wokwi. Test both tasks by checking:
+
+1. Both LEDs fade smoothly.
+2. The two LEDs use their configured PWM frequencies.
+3. The OLED initializes and displays the brightness percentages and frequencies in Task 2.
+4. The Serial Monitor displays the PWM information.
+
+Conclusion
+
+Task 1 demonstrates independent PWM control and LED fading using the ESP32. Task 2 extends the project with an OLED display for real-time monitoring. Both tasks demonstrate PWM generation, I2C communication, and non-blocking timing using millis().
